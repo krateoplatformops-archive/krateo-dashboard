@@ -1,0 +1,30 @@
+apiVersion: v2
+name: krateo-dashboard
+description: Krateo Dashboard provides a GUI for the self-service concept provided by Krateo
+type: application
+icon: 'https://github.com/krateoplatformops/krateo-dashboard/blob/main/docs/media/square_black_logo.png'
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 0.3.97
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: 0.3.97
+
+# sources:
+#   - https://github.com/krateoplatformops/krateo-dashboard
+
+dependencies:
+  - name: postgresql
+    condition: postgresql.enabled
+    version: 10.9.2
+    repository: https://charts.bitnami.com/bitnami
+
+maintainers:
+  - name: Bertelli Luca
+    email: luca.bertelli@kiratech.it
+    url: https://www.kiratech.it
+  - name: Braga Diego
+    email: diego.braga@kiratech.it
+    url: https://www.kiratech.it

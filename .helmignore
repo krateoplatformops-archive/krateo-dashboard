@@ -1,0 +1,26 @@
+docs
+files
+README.md
+todo.txt
+
+
+.DS_Store
+# Common VCS dirs
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*~
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
+.git
+*.log

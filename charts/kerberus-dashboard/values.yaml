@@ -1,0 +1,206 @@
+###########################
+#     Global Settings     #
+###########################
+organization: "Kiratech"
+frontendUrl: https://krateo-dashboard.test.io
+backendUrl: https://krateo-dashboard.test.io
+lighthouseUrl: https://krateo-dashboard.test.io/lighthouse-api
+
+###########################
+#      Global & k8s       #
+###########################
+global:
+  postgresql:
+    postgresqlUsername: backend-user
+    postgresqlPassword: backend-pass
+  nodeSelector: {}
+
+serviceAccount:
+  enabled: false
+
+issuer:
+  email:
+  clusterIssuer: "letsencrypt-staging"
+
+###########################
+#   Frontend Deployment   #
+###########################
+frontend:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ghcr.io/krateoplatformops/krateo-dashboard-frontend
+    tag: 1.3.4
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: 128Mi
+    limits:
+      memory: 2048Mi
+  service:
+    type: ClusterIP
+
+###########################
+#   Backend Deployment    #
+###########################
+backend:
+  enabled: true
+  demoData: false
+  replicaCount: 1
+  image:
+    repository: ghcr.io/krateoplatformops/krateo-dashboard-backend
+    tag: 1.3.2
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: 512Mi
+    limits:
+      memory: 1024Mi
+  service:
+    type: ClusterIP
+
+lighthouse:
+  enabled: false
+  replicaCount: 1
+  image:
+    repository: roadiehq/lighthouse-audit-service
+    tag: latest
+    pullPolicy: IfNotPresent
+  containerPort: 3003
+  resources:
+    requests:
+      memory: 128Mi
+    limits:
+      memory: 256Mi
+  database:
+    connection:
+      port:
+      host:
+      user:
+      password:
+      database: lighthouse_audit_service
+    pathToDatabaseCa:
+
+###########################
+#         Ingress         #
+###########################
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+
+###########################
+#       PostgreSQL        #
+###########################
+postgresql:
+  enabled: true
+
+###########################
+#       Components        #
+###########################
+argocd:
+  token: argocd.token=<token>
+
+sonarqube:
+  target: https://sonarcloud.io/api
+  token: <token>
+
+grafana:
+  target: https://grafana.krateo.io/
+  token: "eyJrIjoiWHpRWnFMWmdrMHdCOGRoSnk4VlB0M1l6T3hEQUYzU20iLCJuIjoiYmFja3N0YWdlIiwiaWQiOjF9"
+
+prometheus:
+  target: https://prometheus.krateo.io/api/v1/
+###########################
+#         Krateo        #
+###########################
+appConfig:
+  app:
+    googleAnalyticsTrackingId:
+
+  backend:
+    ssl:
+      rejectUnauthorized: false
+      ca:
+    database:
+      connection:
+        ssl:
+          rejectUnauthorized: false
+          ca:
+  # sentry:
+  #   organization: Krateo
+  # rollbar:
+  #   organization: Krateo
+
+kubernetes:
+  url: http://localhost:6443
+  token: a
+  clusters:
+    - name: local
+      url: http://localhost:6443
+      serviceAccountToken: a
+      skipTLSVerify: false
+      authProvider: "serviceAccount"
+  customResources:
+
+providers:
+  guest:
+    enabled: "true"
+  github:
+    clientId: <clientId>
+    clientSecret: <clientSecret>
+    token: <token>
+  google:
+    clientId: a
+    clientSecret: a
+  gitlab:
+    clientId: b
+    clientSecret: b
+    baseUrl: b
+    token: x
+  okta:
+    clientId: b
+    clientSecret: b
+    audience: b
+  oauth2:
+    clientId: b
+    clientSecret: b
+    authUrl: b
+    tokenUrl: b
+  auth0:
+    clientId: b
+    clientSecret: b
+    domain: b
+  microsoft:
+    clientId: f
+    clientSecret: f
+    tenantId: f
+  azure:
+    api:
+      token: h
+  sentry:
+    token: e
+  rollbar:
+    accountToken: f
+  circleci:
+    authToken: r
+  newRelic:
+    restApiKey: r
+  travisci:
+    authToken: fake-travis-ci-auth-token
+  pagerduty:
+    token: h
+  saml:
+    entryPoint: a
+    issuer: a
+
+auth:
+  github:
+    clientId: <clientId>
+    clientSecret: <clientSecret>
+    token: <token>
+
+microsoftGraphOrg:
+  groupFilter: securityEnabled eq false
