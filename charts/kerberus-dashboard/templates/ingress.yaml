@@ -10,12 +10,6 @@ metadata:
     {{- if .Values.issuer.email }}
     cert-manager.io/cluster-issuer: {{ .Values.issuer.clusterIssuer }}
     {{- end }}
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($scheme = https) {
-      add_header  Strict-Transport-Security "max-age=0;";
-      }
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
   tls:
@@ -70,12 +64,6 @@ metadata:
     {{- if .Values.issuer.email }}
     cert-manager.io/cluster-issuer: {{ .Values.issuer.clusterIssuer }}
     {{- end }}
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($scheme = https) {
-      add_header  Strict-Transport-Security "max-age=0;";
-      }
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
   tls:
