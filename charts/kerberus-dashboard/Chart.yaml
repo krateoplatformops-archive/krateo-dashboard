@@ -2,15 +2,15 @@ apiVersion: v2
 name: krateo-dashboard
 description: Krateo Dashboard provides a GUI for the self-service concept provided by Krateo
 type: application
-icon: 'https://github.com/krateoplatformops/krateo-dashboard/blob/main/docs/media/square_black_logo.png'
+icon: "https://github.com/krateoplatformops/krateo-dashboard/blob/main/docs/media/square_black_logo.png"
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.3.99
+version: 0.3.100
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 0.3.99
+appVersion: 0.3.100
 
 # sources:
 #   - https://github.com/krateoplatformops/krateo-dashboard
