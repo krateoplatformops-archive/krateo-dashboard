@@ -11,6 +11,7 @@ metadata:
     cert-manager.io/cluster-issuer: {{ .Values.issuer.clusterIssuer }}
     {{- end }}
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
+{{- if .Values.ingress.tls.enabled -}}
 spec:
   tls:
     - secretName: {{ include "krateo.name" . }}-tls
@@ -18,7 +19,7 @@ spec:
         - {{ $frontendUrl.host }}
         - {{ $backendUrl.host }}
         - {{ $lighthouseUrl.host }}
-
+{{- end -}}
   rules:
     - host: {{ $frontendUrl.host }}
       http:
@@ -45,6 +46,7 @@ spec:
          {{- end }}
 
 {{/* Route lighthouse through a different host */}}
+{{- if .Values.lighthouse.enabled -}}
 {{- if not ( eq $frontendUrl.host $lighthouseUrl.host ) }}
     - host: {{ $lighthouseUrl.host }}
       http:
@@ -79,4 +81,5 @@ spec:
               serviceName: {{ include "lighthouse.serviceName" . }}
               servicePort: 80
 {{- end }}
+{{- end -}}
 {{- end -}}
