@@ -7,19 +7,21 @@ kind: Ingress
 metadata:
   name: {{ include "krateo.name" . }}-ingress
   annotations:
-    {{- if .Values.issuer.email }}
-    cert-manager.io/cluster-issuer: {{ .Values.issuer.clusterIssuer }}
+    {{- if .Values.issuer.clusterIssuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.issuer.clusterIssuer | quote }}
     {{- end }}
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
-{{- if .Values.ingress.tls.enabled -}}
 spec:
+{{- if .Values.ingress.tls.enabled }}
   tls:
     - secretName: {{ include "krateo.name" . }}-tls
       hosts:
         - {{ $frontendUrl.host }}
         - {{ $backendUrl.host }}
+        {{- if .Values.lighthouse.enabled }}
         - {{ $lighthouseUrl.host }}
-{{- end -}}
+        {{- end }}
+{{- end }}
   rules:
     - host: {{ $frontendUrl.host }}
       http:
