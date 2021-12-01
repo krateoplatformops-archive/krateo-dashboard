@@ -32,7 +32,14 @@ spec:
             - containerPort: 7000
           resources:
           {{- toYaml .Values.backend.resources | nindent 12 }}
-
+          livenessProbe:
+            httpGet:
+              path: /api/catalog/entities?filter=kind=component
+              port: 7000
+          readinessProbe:
+            httpGet:
+              path: /api/catalog/entities?filter=kind=component
+              port: 7000
           envFrom:
             - secretRef:
                 name: {{ include "krateo.name" . }}-backend

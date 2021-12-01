@@ -22,6 +22,9 @@ spec:
         - {{ $lighthouseUrl.host }}
         {{- end }}
 {{- end }}
+  backend:
+    serviceName: {{ include "frontend.serviceName" . }}
+    servicePort: 80
   rules:
     - host: {{ $frontendUrl.host }}
       http:
@@ -32,7 +35,7 @@ spec:
               servicePort: 80
           {{/* Route the backend inside the same hostname as the frontend when they are the same */}}
           {{- if eq $frontendUrl.host $backendUrl.host}}
-          - path: /api
+          - path: /api/*
             backend:
               serviceName: {{ include "backend.serviceName" . }}
               servicePort: 80
