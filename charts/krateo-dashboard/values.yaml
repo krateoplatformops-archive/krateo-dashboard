@@ -16,14 +16,14 @@ global:
   nodeSelector: {}
 
 postgresql:
-    global:
-      postgresql:
-          postgresqlUsername: backend-user
-          postgresqlPassword: backend-pass
-    resources:
-      limits:
-        memory: 512Mi
-        cpu: 500m
+  global:
+    postgresql:
+        postgresqlUsername: backend-user
+        postgresqlPassword: backend-pass
+  resources:
+    limits:
+      memory: 512Mi
+      cpu: 500m
 
 serviceAccount:
   enabled: false
