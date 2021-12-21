@@ -49,7 +49,7 @@ backend:
   replicaCount: 1
   image:
     repository: ghcr.io/krateoplatformops/krateo-dashboard-backend
-    tag: 1.3.2
+    tag: 1.3.4
     pullPolicy: IfNotPresent
   resources:
     requests:
@@ -118,6 +118,9 @@ grafana:
 
 prometheus:
   target: https://prometheus.krateo.io/api/v1/
+
+keptn:
+  token: <token>
 ###########################
 #         Krateo        #
 ###########################
