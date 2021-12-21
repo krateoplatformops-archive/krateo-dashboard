@@ -13,11 +13,17 @@ global:
   postgresql:
     postgresqlUsername: backend-user
     postgresqlPassword: backend-pass
+  nodeSelector: {}
+
+postgresql:
+    global:
+      postgresql:
+          postgresqlUsername: backend-user
+          postgresqlPassword: backend-pass
     resources:
       limits:
         memory: 512Mi
         cpu: 500m
-  nodeSelector: {}
 
 serviceAccount:
   enabled: false
