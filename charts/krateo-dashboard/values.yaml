@@ -10,20 +10,7 @@ lighthouseUrl: https://krateo-dashboard.test.io/lighthouse-api
 #      Global & k8s       #
 ###########################
 global:
-  postgresql:
-    postgresqlUsername: backend-user
-    postgresqlPassword: backend-pass
   nodeSelector: {}
-
-postgresql:
-  global:
-    postgresql:
-        postgresqlUsername: backend-user
-        postgresqlPassword: backend-pass
-  resources:
-    limits:
-      memory: 512Mi
-      cpu: 500m
 
 serviceAccount:
   enabled: false
@@ -45,8 +32,10 @@ frontend:
   resources:
     requests:
       memory: 128Mi
+      cpu: 100m
     limits:
       memory: 2048Mi
+      cpu: 500m
   service:
     type: ClusterIP
 
@@ -64,8 +53,10 @@ backend:
   resources:
     requests:
       memory: 512Mi
+      cpu: 100m
     limits:
       memory: 1024Mi
+      cpu: 400m
   service:
     type: ClusterIP
 
@@ -111,6 +102,14 @@ ingress:
 ###########################
 postgresql:
   enabled: true
+  global:
+    postgresql:
+      postgresqlUsername: backend-user
+      postgresqlPassword: backend-pass
+  resources:
+    limits:
+      memory: 512Mi
+      cpu: 500m
 
 ###########################
 #       Components        #

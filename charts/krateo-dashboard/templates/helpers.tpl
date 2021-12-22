@@ -7,7 +7,7 @@
 {{- end -}}
 
 {{- define "krateo.lighthouse.postgresCaFilename" -}}
-{{ include "krateo.lighthouse.postgresCaDir" . }}/{{- required "The name for the CA certificate file for postgresql is required" .Values.global.postgresql.caFilename }}
+{{ include "krateo.lighthouse.postgresCaDir" . }}/{{- required "The name for the CA certificate file for postgresql is required" .Values.postgresql.global.postgresql.caFilename }}
 {{- end -}}
 
 {{- define "krateo.lighthouse.postgresCaDir" -}}
@@ -77,15 +77,15 @@
 
 {{- define "backend.postgresql.user" -}}
 {{- if .Values.postgresql.enabled }}
-{{- .Values.global.postgresql.postgresqlUsername }}
+{{- .Values.postgresql.global.postgresql.postgresqlUsername }}
 {{- else -}}
-{{- required "A valid .Values.global.postgresql.postgresqlUsername is required when postgresql is not enabled" .Values.global.postgresql.postgresqlUsername -}}
+{{- required "A valid .Values.postgresql.global.postgresql.postgresqlUsername is required when postgresql is not enabled" .Values.postgresql.global.postgresql.postgresqlUsername -}}
 {{- end -}}
 {{- end -}}
 
 {{- define "lighthouse.postgresql.user" -}}
 {{- if .Values.postgresql.enabled }}
-{{- .Values.global.postgresql.postgresqlUsername }}
+{{- .Values.postgresql.global.postgresql.postgresqlUsername }}
 {{- else -}}
 {{- required "A valid .Values.lighthouse.database.connection.user is required when postgresql is not enabled" .Values.lighthouse.database.connection.user -}}
 {{- end -}}
