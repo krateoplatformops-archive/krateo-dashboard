@@ -35,12 +35,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /api/catalog/entities?filter=kind=component
-              port: 7000
+              port: 7007
             initialDelaySeconds: 600
           readinessProbe:
             httpGet:
               path: /api/catalog/entities?filter=kind=component
-              port: 7000
+              port: 7007
             initialDelaySeconds: 600
           envFrom:
             - secretRef:
@@ -91,7 +91,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 7000
+      targetPort: 7007
 
   selector:
     app: backstage

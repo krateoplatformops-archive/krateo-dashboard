@@ -2,6 +2,14 @@ app:
   title: {{ .Values.organization }} - Krateo
   baseUrl: {{ .Values.frontendUrl }}
   googleAnalyticsTrackingId: {{ .Values.appConfig.app.googleAnalyticsTrackingId }}
+  support:
+    url: https://github.com/backstage/backstage/issues # Used by common ErrorPage
+    items: # Used by common SupportButton component
+      - title: GitHub Krateo
+        icon: github
+        links:
+          - url: https://github.com/krateoplatformops/krateo
+            title: GitHub
 
 organization:
   name: {{ .Values.organization }}
@@ -9,14 +17,13 @@ organization:
 backend:
   baseUrl: {{ .Values.backendUrl }}
   listen:
-      port: 7000
+      port: 7007
   csp:
     connect-src: ["'self'", "http:", "https:"]
   cors:
     origin: {{ .Values.frontendUrl }}
     methods: [GET, POST, PUT, DELETE]
     credentials: true
-  lighthouseUrlname: {{ include "lighthouse.serviceName" . | quote }}
   database:
     client: pg
     connection:
@@ -47,6 +54,55 @@ proxy:
   "/prometheus/api":
     target: {{ .Values.prometheus.target }}
 
+  "/circleci/api":
+    target: https://circleci.com/api/v1.1
+    headers:
+      Circle-Token: ${CIRCLECI_AUTH_TOKEN}
+
+  "/jenkins/api":
+    target: http://localhost:8080
+    headers:
+      Authorization: ${JENKINS_BASIC_AUTH_HEADER}
+
+  "/travisci/api":
+    target: https://api.travis-ci.com
+    changeOrigin: true
+    headers:
+      Authorization: ${TRAVISCI_AUTH_TOKEN}
+      travis-api-version: "3"
+
+  "/newrelic/apm/api":
+    target: https://api.newrelic.com/v2
+    headers:
+      X-Api-Key: ${NEW_RELIC_REST_API_KEY}
+
+  "/pagerduty":
+    target: https://api.pagerduty.com
+    headers:
+      Authorization: Token token=${PAGERDUTY_TOKEN}
+
+  "/buildkite/api":
+    target: https://api.buildkite.com/v2/
+    headers:
+      Authorization: ${BUILDKITE_TOKEN}
+
+  "/sentry/api":
+    target: https://sentry.io/api/
+    allowedMethods: ["GET"]
+    headers:
+      Authorization: ${SENTRY_TOKEN}
+
+  "/ilert":
+    target: https://api.ilert.com
+    allowedMethods: ["GET", "POST", "PUT"]
+    allowedHeaders: ["Authorization"]
+    headers:
+      Authorization: ${ILERT_AUTH_HEADER}
+
+  "/airflow":
+    target: https://your.airflow.instance.com/api/v1
+    headers:
+      Authorization: ${AIRFLOW_BASIC_AUTH_HEADER}
 
 grafana:
   domain: {{ .Values.grafana.target }}
@@ -65,6 +121,14 @@ integrations:
   azure:
     - host: dev.azure.com
       token: ${AZURE_TOKEN}
+
+sentry:
+  organization: my-company
+
+rollbar:
+  organization: my-company
+  # NOTE: The rollbar-backend & accountToken key may be deprecated in the future (replaced by a proxy config)
+  accountToken: my-rollbar-account-token
 
 techdocs:
   builder: "local" # Alternatives - 'external'
@@ -209,3 +273,94 @@ kubernetes:
             skipTLSVerify: {{ $k8s.skipTLSVerify }}
             authProvider: {{ $k8s.authProvider | quote }}
         {{- end }}
+
+lighthouse:
+  baseUrl: http://localhost:3003
+
+kafka:
+  clientId: backstage
+  clusters:
+    - name: cluster
+      brokers:
+        - localhost:9092
+
+allure:
+  baseUrl: http://localhost:5050/allure-docker-service
+
+pagerduty:
+  eventsBaseUrl: "https://events.pagerduty.com/v2"
+jenkins:
+  instances:
+    - name: default
+      baseUrl: https://jenkins.example.com
+      username: backstage-bot
+      apiKey: 123456789abcdef0123456789abcedf012
+
+azureDevOps:
+  host: dev.azure.com
+  token: my-token
+  organization: my-company
+
+apacheAirflow:
+  baseUrl: https://your.airflow.instance.com
+
+costInsights:
+  engineerCost: 200000
+  products:
+    computeEngine:
+      name: Compute Engine
+      icon: compute
+    cloudDataflow:
+      name: Cloud Dataflow
+      icon: data
+    cloudStorage:
+      name: Cloud Storage
+      icon: storage
+    bigQuery:
+      name: BigQuery
+      icon: search
+    events:
+      name: Events
+      icon: data
+  metrics:
+    DAU:
+      name: Daily Active Users
+      default: true
+    MSC:
+      name: Monthly Subscribers
+  currencies:
+    engineers:
+      label: "Engineers 🛠"
+      unit: "engineer"
+    usd:
+      label: "US Dollars 💵"
+      kind: "USD"
+      unit: "dollar"
+      prefix: "$"
+      rate: 1
+    carbonOffsetTons:
+      label: "Carbon Offset Tons ♻️⚖️s"
+      kind: "CARBON_OFFSET_TONS"
+      unit: "carbon offset ton"
+      rate: 3.5
+    beers:
+      label: "Beers 🍺"
+      kind: "BEERS"
+      unit: "beer"
+      rate: 4.5
+    pintsIceCream:
+      label: "Pints of Ice Cream 🍦"
+      kind: "PINTS_OF_ICE_CREAM"
+      unit: "ice cream pint"
+      rate: 5.5
+
+homepage:
+  clocks:
+    - label: UTC
+      timezone: UTC
+    - label: NYC
+      timezone: "America/New_York"
+    - label: STO
+      timezone: "Europe/Stockholm"
+    - label: TYO
+      timezone: "Asia/Tokyo"
