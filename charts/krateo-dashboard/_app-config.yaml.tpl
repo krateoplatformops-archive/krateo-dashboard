@@ -36,13 +36,13 @@ backend:
     store: memory
 
 proxy:
-  '/argocd/api':
-      target: http://argocd-server.argo-system.svc/api/v1/
-      changeOrigin: true
-      secure: false
-      headers:
-        Cookie:
-          $env: ARGOCD_AUTH_TOKEN
+  '/argocd/api/applications/name':
+    target: http://argocd-server.argo-system.svc/api/v1/applications
+    changeOrigin: true
+    secure: false
+    headers:
+      Cookie:
+        $env: ARGOCD_AUTH_TOKEN
   '/sonarqube':
     target: https://sonarcloud.io/api
     allowedMethods: ['GET']
