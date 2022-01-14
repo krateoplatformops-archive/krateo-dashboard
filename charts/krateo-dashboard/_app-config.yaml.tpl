@@ -41,8 +41,7 @@ proxy:
     changeOrigin: true
     secure: false
     headers:
-      Cookie:
-        $env: ARGOCD_AUTH_TOKEN
+      Cookie: argocd.token=${ARGOCD_AUTH_TOKEN}
   '/sonarqube':
     target: https://sonarcloud.io/api
     allowedMethods: ['GET']
