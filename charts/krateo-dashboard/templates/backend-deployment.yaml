@@ -57,6 +57,11 @@ spec:
                 secretKeyRef:
                   name: {{ include "postgresql.secretName" . }}
                   key: postgresql-password
+            - name: ARGOCD_AUTH_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: krateo-dashboard-argocd-token
+                    key: authToken
           volumeMounts:
             - name: app-config
               mountPath: {{ printf "/app/%s" (include "krateo.appConfigFilename" .) }}
