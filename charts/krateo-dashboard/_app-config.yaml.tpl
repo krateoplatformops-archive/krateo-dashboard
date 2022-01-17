@@ -37,7 +37,7 @@ backend:
 
 proxy:
   '/argocd/api/applications/name':
-    target: http://argocd-server.argo-system.svc/api/v1/applications
+    target: http://krateo-module-core-argocd-server.krateo-system.svc/api/v1/applications
     changeOrigin: true
     secure: false
     headers:
