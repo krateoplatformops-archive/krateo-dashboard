@@ -113,7 +113,7 @@ proxy:
     target: {{ .Values.keptn.bridge }}
     secure: false
     headers:
-      Authorization: ${KEPTN_BRIDGE_TOKEN}
+      Authorization: Bearer ${KEPTN_BRIDGE_TOKEN}
 
 grafana:
   domain: {{ .Values.grafana.target }}

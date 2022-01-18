@@ -131,7 +131,7 @@ prometheus:
 keptn:
   bridge: http://keptn.krateoplatformops.io/bridge/api/
   api: http://keptn.krateoplatformops.io/api/v1/
-  bridgeToken: Basic <token>
+  bridgeToken: <token>
   apiToken: <token>
 ###########################
 #         Krateo        #
