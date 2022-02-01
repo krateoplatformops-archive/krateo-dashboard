@@ -17,7 +17,7 @@ organization:
 backend:
   baseUrl: {{ .Values.backendUrl }}
   listen:
-      port: 7007
+    port: 7007
   csp:
     connect-src: ["'self'", "http:", "https:"]
   cors:
@@ -278,11 +278,11 @@ kubernetes:
     - type: "config"
       clusters:
         {{- range $k8s := .Values.kubernetes.clusters }}
-          - name: {{ $k8s.name | quote }}
-            url: {{ $k8s.url | quote }}
-            serviceAccountToken: ${K8S_SA_TOKEN}
-            skipTLSVerify: {{ $k8s.skipTLSVerify }}
-            authProvider: {{ $k8s.authProvider | quote }}
+        - name: {{ $k8s.name | quote }}
+          url: {{ $k8s.url | quote }}
+          serviceAccountToken: ${K8S_SA_TOKEN}
+          skipTLSVerify: {{ $k8s.skipTLSVerify }}
+          authProvider: {{ $k8s.authProvider | quote }}
         {{- end }}
 
 lighthouse:
