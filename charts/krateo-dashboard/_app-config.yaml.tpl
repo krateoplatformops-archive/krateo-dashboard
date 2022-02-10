@@ -219,6 +219,24 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
   processors:
+    {{ if .Values.ldap.enabled }}
+    ldapOrg:
+      providers:
+        - target: {{ .Values.ldap.target }}
+          bind:
+            dn: {{ .Values.ldap.bind.dn }}
+            secret: ${LDAP_SECRET}
+          users:
+            dn: {{ .Values.ldap.users.dn }}
+            options:
+              filter: {{ .Values.ldap.users.options.filter }}
+            map:
+              description: {{ .Values.ldap.users.map.description }}
+          groups:
+            dn: {{ .Values.ldap.groups.dn }}
+            options:
+              filter: {{ .Values.ldap.groups.options.filter }}
+    {{ end }}
     microsoftGraphOrg:
       providers:
         - target: https://graph.microsoft.com/v1.0

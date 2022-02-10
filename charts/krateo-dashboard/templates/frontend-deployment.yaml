@@ -26,7 +26,7 @@ spec:
         - name: {{ .Values.dockerRegistrySecretName }}
       {{- end }}
       containers:
-        - name: {{ .Chart.Name }}-frontend
+        - name: krateo-frontend
           image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:

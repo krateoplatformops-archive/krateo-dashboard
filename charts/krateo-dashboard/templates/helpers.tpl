@@ -1,5 +1,5 @@
 {{- define "krateo.name" -}}
-{{- printf "krateo-%s" .Release.Name | lower | nospace | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s" .Release.Name | lower | nospace | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "krateo.chart" -}}
