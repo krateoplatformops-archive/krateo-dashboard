@@ -219,6 +219,12 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
   processors:
+    {{ if .Values.providers.github.enterprise.enabled }}
+    githubOrg:
+      providers:
+        - target: {{ .Values.providers.github.enterprise.url }}
+          token: ${GITHUB_TOKEN}
+    {{ end }}
     {{ if .Values.ldap.enabled }}
     ldapOrg:
       providers:

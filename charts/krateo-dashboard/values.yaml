@@ -172,6 +172,9 @@ providers:
     clientId: <clientId>
     clientSecret: <clientSecret>
     token: <token>
+    enterprise:
+      enabled: false
+      url: <target>
   google:
     clientId: a
     clientSecret: a
@@ -226,7 +229,7 @@ microsoftGraphOrg:
   groupFilter: securityEnabled eq false
 
 ldap:
-  enabled: true
+  enabled: false
   secret: a
   target: ldaps://ds.example.net
   bind:
