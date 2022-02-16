@@ -223,6 +223,11 @@ scaffolder:
     visibility: public # or 'internal' or 'private'
 
 catalog:
+  locations:
+  {{ if .Values.ldap.enabled }}
+    - type: ldap-org
+      target: {{ .Values.ldap.target }}
+  {{ end }}
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
   processors:
