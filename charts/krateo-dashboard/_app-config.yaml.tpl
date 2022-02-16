@@ -120,7 +120,11 @@ grafana:
 
 integrations:
   github:
+    {{ if .Values.providers.github.enterprise.enabled }}
+    - host: {{ .Values.providers.github.enterprise.url }}
+    {{ else }}
     - host: github.com
+    {{ end }}
       token: ${GITHUB_TOKEN}
   gitlab:
     - host: gitlab.com
@@ -162,7 +166,9 @@ auth:
         secure: false
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-        enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
+        {{ if .Values.providers.github.enterprise.enabled }}
+        enterpriseInstanceUrl:  {{ .Values.providers.github.enterprise.url }}
+        {{ end }}
     gitlab:
       development:
         clientId: ${AUTH_GITLAB_CLIENT_ID}

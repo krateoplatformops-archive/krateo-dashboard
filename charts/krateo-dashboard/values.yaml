@@ -179,10 +179,10 @@ providers:
     clientId: a
     clientSecret: a
   gitlab:
-    clientId: b
-    clientSecret: b
-    baseUrl: b
-    token: x
+    clientId: ""
+    clientSecret: ""
+    baseUrl: ""
+    token: ""
   okta:
     clientId: b
     clientSecret: b
@@ -197,9 +197,9 @@ providers:
     clientSecret: b
     domain: b
   microsoft:
-    clientId: f
-    clientSecret: f
-    tenantId: f
+    clientId: ""
+    clientSecret: ""
+    tenantId: ""
   azure:
     api:
       token: h
@@ -221,9 +221,9 @@ providers:
 
 auth:
   github:
-    clientId: <clientId>
-    clientSecret: <clientSecret>
-    token: <token>
+    clientId: ""
+    clientSecret: ""
+    token: ""
 
 microsoftGraphOrg:
   groupFilter: securityEnabled eq false
