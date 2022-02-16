@@ -122,6 +122,7 @@ integrations:
   github:
     {{ if .Values.providers.github.enterprise.enabled }}
     - host: {{ .Values.providers.github.enterprise.url }}
+      apiBaseUrl: {{ .Values.providers.github.enterprise.url }}/api/v3
     {{ else }}
     - host: github.com
     {{ end }}
