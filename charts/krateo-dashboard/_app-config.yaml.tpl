@@ -223,11 +223,6 @@ scaffolder:
     visibility: public # or 'internal' or 'private'
 
 catalog:
-  locations:
-  {{ if .Values.ldap.enabled }}
-    - type: ldap-org
-      target: {{ .Values.ldap.target }}
-  {{ end }}
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
   processors:
@@ -279,6 +274,10 @@ catalog:
       target: https://graph.microsoft.com/v1.0
       rules:
         - allow: [Group, User]
+    {{ if .Values.ldap.enabled }}
+    - type: ldap-org
+      target: {{ .Values.ldap.target }}
+    {{ end }}
 {{- if .Values.backend.demoData }}
     # Backstage example components
     - type: github
