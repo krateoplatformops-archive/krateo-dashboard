@@ -122,7 +122,7 @@ integrations:
   github:
     {{ if .Values.providers.github.enterprise.enabled }}
     - host: {{ .Values.providers.github.enterprise.url }}
-      apiBaseUrl: {{ .Values.providers.github.enterprise.url }}/api/v3
+      apiBaseUrl: https://{{ .Values.providers.github.enterprise.url }}/api/v3
     {{ else }}
     - host: github.com
     {{ end }}
@@ -168,7 +168,7 @@ auth:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
         {{ if .Values.providers.github.enterprise.enabled }}
-        enterpriseInstanceUrl:  {{ .Values.providers.github.enterprise.url }}
+        enterpriseInstanceUrl: https://{{ .Values.providers.github.enterprise.url }}
         {{ end }}
     gitlab:
       development:
@@ -229,7 +229,7 @@ catalog:
     {{ if .Values.providers.github.enterprise.enabled }}
     githubOrg:
       providers:
-        - target: {{ .Values.providers.github.enterprise.url }}
+        - target: https://{{ .Values.providers.github.enterprise.url }}
           token: ${GITHUB_TOKEN}
     {{ end }}
     {{ if .Values.ldap.enabled }}
