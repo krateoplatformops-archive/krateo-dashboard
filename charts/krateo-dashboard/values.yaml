@@ -224,7 +224,15 @@ auth:
     clientId: <clientId>
     clientSecret: <clientSecret>
     token: <token>
-
+  oidc:
+    metadataUrl: <metadataUrl>
+    clientId: <clientId>
+    clientSecret: <clientSecret>
+    authorizationUrl: <authorizationUrl>
+    tokenUrl: <tokenUrl>
+    tokenSignedResponseAlg: "RS256"
+    scope: "openid profile email"
+    prompt: "login"
 microsoftGraphOrg:
   groupFilter: securityEnabled eq false
 
