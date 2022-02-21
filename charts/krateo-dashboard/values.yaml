@@ -220,6 +220,8 @@ providers:
     issuer: a
 
 auth:
+  session:
+    secret: a
   github:
     clientId: <clientId>
     clientSecret: <clientSecret>

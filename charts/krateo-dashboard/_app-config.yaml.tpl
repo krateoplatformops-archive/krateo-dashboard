@@ -154,6 +154,10 @@ techdocs:
     type: "local"
 
 auth:
+  {{ if ne .Values.auth.session.secret "a" }}
+  session:
+    secret: ${AUTH_SESSION_SECRET}
+  {{ end }}
   providers:
     guest:
       enabled: ${AUTH_GUEST}
