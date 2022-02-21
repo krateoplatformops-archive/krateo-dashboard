@@ -243,6 +243,9 @@ catalog:
             dn: {{ .Values.ldap.users.dn }}
             options:
               filter: {{ .Values.ldap.users.options.filter }}
+              paged:
+                pageSize: 100
+                pagePause: true
             map:
               description: {{ .Values.ldap.users.map.description }}
           groups:

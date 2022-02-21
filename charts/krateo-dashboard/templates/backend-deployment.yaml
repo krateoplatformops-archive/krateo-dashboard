@@ -51,7 +51,9 @@ spec:
                 name: {{ include "krateo.name" . }}-auth
           env:
             - name: NODE_ENV
-              value: {{ .Values.backend.nodeEnv | default "development" }}
+              value: {{ .Values.backend.nodeEnv | default "production" }}
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: 0
             - name: APP_CONFIG_backend_database_connection_password
               valueFrom:
                 secretKeyRef:
