@@ -2,6 +2,30 @@ apiVersion: v1
 entries:
   krateo-dashboard:
   - apiVersion: v2
+    appVersion: 0.3.148
+    created: "2022-02-21T10:32:01.706907132Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.9.2
+    description: Krateo Dashboard provides a GUI for the self-service concept provided
+      by Krateo
+    digest: 71c3b5bb20b79d86a9bb9acde01e5dc298d1e3bfa3dc93925aeb1c9de75c5459
+    icon: https://github.com/krateoplatformops/krateo-dashboard/blob/main/docs/media/square_black_logo.png
+    maintainers:
+    - email: luca.bertelli@kiratech.it
+      name: Bertelli Luca
+      url: https://www.kiratech.it
+    - email: diego.braga@kiratech.it
+      name: Braga Diego
+      url: https://www.kiratech.it
+    name: krateo-dashboard
+    type: application
+    urls:
+    - https://github.com/krateoplatformops/krateo-dashboard/releases/download/krateo-dashboard-0.3.148/krateo-dashboard-0.3.148.tgz
+    version: 0.3.148
+  - apiVersion: v2
     appVersion: 0.3.147
     created: "2022-02-18T09:18:27.827024835Z"
     dependencies:
@@ -1129,4 +1153,4 @@ entries:
     urls:
     - https://github.com/krateoplatformops/krateo-dashboard/releases/download/krateo-dashboard-0.3.99/krateo-dashboard-0.3.99.tgz
     version: 0.3.99
-generated: "2022-02-18T09:18:27.827473741Z"
+generated: "2022-02-21T10:32:01.707340853Z"
