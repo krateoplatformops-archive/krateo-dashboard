@@ -52,6 +52,8 @@ spec:
           env:
             - name: NODE_ENV
               value: {{ .Values.backend.nodeEnv | default "development" }}
+            - name: LOG_LEVEL
+              value: debug
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: APP_CONFIG_backend_database_connection_password
