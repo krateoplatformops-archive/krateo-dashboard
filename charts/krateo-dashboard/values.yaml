@@ -55,8 +55,8 @@ backend:
       memory: 512Mi
       cpu: 100m
     limits:
-      memory: 12000Mi
-      cpu: 3000m
+      memory: 2048Mi
+      cpu: 1000m
   service:
     type: ClusterIP
 
