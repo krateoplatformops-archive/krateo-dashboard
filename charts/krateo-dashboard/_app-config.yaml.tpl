@@ -58,10 +58,13 @@ proxy:
     headers:
       Circle-Token: ${CIRCLECI_AUTH_TOKEN}
 
+  {{- with (first .Values.jenkins.instances) }}
   "/jenkins/api":
-    target: http://localhost:8080
+    target: {{ .baseUrl }}
+    changeOrigin: true
     headers:
-      Authorization: ${JENKINS_BASIC_AUTH_HEADER}
+      Authorization: Basic {{ .apiKey }}
+  {{- end }}
 
   "/travisci/api":
     target: https://api.travis-ci.com
@@ -344,10 +347,12 @@ pagerduty:
   eventsBaseUrl: "https://events.pagerduty.com/v2"
 jenkins:
   instances:
-    - name: default
-      baseUrl: https://jenkins.example.com
-      username: backstage-bot
-      apiKey: 123456789abcdef0123456789abcedf012
+    {{- range $j := .Values.jenkins.instances }}
+    - name: {{ $j.name | quote }}
+      baseUrl: {{ $j.baseUrl | quote }}
+      username: {{ $j.username | quote }}
+      apiKey: {{ $j.apiKey | quote }}
+    {{- end }}
 
 azureDevOps:
   host: dev.azure.com

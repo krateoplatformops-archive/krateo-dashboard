@@ -255,3 +255,14 @@ ldap:
     dn: ou=access,ou=groups,ou=example,dc=example,dc=net
     options:
       filter: (&(objectClass=some-group-class)(!(groupType=email)))
+
+jenkins:
+  instances:
+    - name: default
+      baseUrl: https://jenkins.example.com
+      username: backstage-bot
+      apiKey: 123456789abcdef0123456789abcedf012
+    - name: departmentFoo
+      baseUrl: https://jenkins-foo.example.com
+      username: backstage-bot
+      apiKey: 123456789abcdef0123456789abcedf012
