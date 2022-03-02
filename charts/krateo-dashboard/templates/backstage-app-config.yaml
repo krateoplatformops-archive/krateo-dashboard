@@ -13,10 +13,10 @@ metadata:
 data:
   APP_CONFIG_techdocs_storageUrl: "{{ .Values.backendUrl }}/api/techdocs/static/docs"
   APP_CONFIG_techdocs_requestUrl: "{{ .Values.backendUrl }}/api/techdocs"
-  APP_CONFIG_auth_providers_github_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
-  APP_CONFIG_auth_providers_google_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
-  APP_CONFIG_auth_providers_gitlab_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
-  APP_CONFIG_auth_providers_okta_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
-  APP_CONFIG_auth_providers_oauth2_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
+  APP_CONFIG_auth_providers_github_development_appOrigin: {{ .Values.frontendUrl | quote }}
+  APP_CONFIG_auth_providers_google_development_appOrigin: {{ .Values.frontendUrl | quote }}
+  APP_CONFIG_auth_providers_gitlab_development_appOrigin: {{ .Values.frontendUrl | quote }}
+  APP_CONFIG_auth_providers_okta_development_appOrigin: {{ .Values.frontendUrl | quote }}
+  APP_CONFIG_auth_providers_oauth2_development_appOrigin: {{ .Values.frontendUrl | quote }}
   KEPTN_SHIPYARD_URL: {{ .Values.keptn.shipyard | quote }}
 
