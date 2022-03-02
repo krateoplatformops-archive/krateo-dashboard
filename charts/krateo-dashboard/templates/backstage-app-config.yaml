@@ -18,4 +18,5 @@ data:
   APP_CONFIG_auth_providers_gitlab_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
   APP_CONFIG_auth_providers_okta_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
   APP_CONFIG_auth_providers_oauth2_development_appOrigin: {{ .Values.frontendUrl | quote | quote }}
+  KEPTN_SHIPYARD_URL: {{ .Values.keptn.shipyard | quote | quote }}
 
