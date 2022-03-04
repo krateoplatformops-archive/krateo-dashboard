@@ -129,7 +129,7 @@ prometheus:
   target: https://prometheus.krateo.io/api/v1/
 
 keptn:
-  bridge: http://keptn.krateoplatformops.io/bridge/api/
+  bridge: http://keptn.krateoplatformops.io/api/controlPlane/v1/
   api: http://keptn.krateoplatformops.io/api/v1/
   shipyard: http://shipyard-controller.krateo-system.svc:8080/v1
   bridgeToken: <token>
