@@ -48,7 +48,7 @@ backend:
   replicaCount: 1
   image:
     repository: ghcr.io/krateoplatformops/krateo-dashboard-backend
-    tag: 1.3.31
+    tag: 1.3.33
     pullPolicy: Always
   resources:
     requests:
@@ -129,10 +129,8 @@ prometheus:
   target: https://prometheus.krateo.io/api/v1/
 
 keptn:
-  bridge: http://keptn.krateoplatformops.io/api/controlPlane/v1/
-  api: http://keptn.krateoplatformops.io/api/v1/
+  api: http://keptn.krateoplatformops.io/api/
   shipyard: http://shipyard-controller.krateo-system.svc:8080/v1
-  bridgeToken: <token>
   apiToken: <token>
 ###########################
 #         Krateo        #

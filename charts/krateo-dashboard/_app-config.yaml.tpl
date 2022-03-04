@@ -106,14 +106,8 @@ proxy:
     headers:
       Authorization: ${AIRFLOW_BASIC_AUTH_HEADER}
 
-  "/keptn-api":
-    target: {{ .Values.keptn.api }}
-    secure: false
-    headers:
-      x-token: ${KEPTN_API_TOKEN}
-
   "/keptn":
-    target: {{ .Values.keptn.bridge }}
+    target: {{ .Values.keptn.api }}
     secure: false
     headers:
       x-token: ${KEPTN_API_TOKEN}
