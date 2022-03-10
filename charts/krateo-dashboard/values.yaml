@@ -123,10 +123,11 @@ sonarqube:
 
 grafana:
   target: https://grafana.krateo.io/
-  token: "eyJrIjoiWHpRWnFMWmdrMHdCOGRoSnk4VlB0M1l6T3hEQUYzU20iLCJuIjoiYmFja3N0YWdlIiwiaWQiOjF9"
+  token: <token>
 
 prometheus:
   target: https://prometheus.krateo.io/api/v1/
+  token: <token>
 
 keptn:
   api: http://keptn.krateoplatformops.io/api/

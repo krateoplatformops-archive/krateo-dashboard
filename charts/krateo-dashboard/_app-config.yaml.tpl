@@ -52,6 +52,8 @@ proxy:
       Authorization: Bearer ${GRAFANA_AUTH}
   "/prometheus/api":
     target: {{ .Values.prometheus.target }}
+    headers:
+      Authorization: Bearer ${PROMETHEUS_TOKEN}
 
   "/circleci/api":
     target: https://circleci.com/api/v1.1
