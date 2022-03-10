@@ -36,12 +36,12 @@ spec:
             httpGet:
               path: /api/catalog/entities?filter=kind=component
               port: 7007
-            initialDelaySeconds: 300
+            initialDelaySeconds: 180
           readinessProbe:
             httpGet:
               path: /api/catalog/entities?filter=kind=component
               port: 7007
-            initialDelaySeconds: 300
+            initialDelaySeconds: 180
           envFrom:
             - secretRef:
                 name: {{ include "krateo.name" . }}-backend

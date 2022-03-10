@@ -48,6 +48,7 @@ proxy:
   "/sonarqube":
     target: {{ .Values.sonarqube.target }}/api
     allowedMethods: ['GET']
+    secure: false
     auth: ${SONARQUBE_AUTH}
   "/grafana/api":
     target: {{ .Values.grafana.target }}
@@ -55,8 +56,10 @@ proxy:
       Authorization: Bearer ${GRAFANA_AUTH}
   "/prometheus/api":
     target: {{ .Values.prometheus.target }}
+    changeOrigin: true
+    secure: false
     headers:
-      Authorization: Bearer ${PROMETHEUS_TOKEN}
+      Authorization: ${PROMETHEUS_TOKEN}
 
   "/circleci/api":
     target: https://circleci.com/api/v1.1
