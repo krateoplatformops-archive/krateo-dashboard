@@ -35,6 +35,9 @@ backend:
   cache:
     store: memory
 
+sonarQube:
+  baseUrl: {{ .Values.sonarqube.target }}
+
 proxy:
   "/argocd/api/applications/name":
     target: http://krateo-module-core-argocd-server.krateo-system.svc/api/v1/applications
@@ -43,7 +46,7 @@ proxy:
     headers:
       Cookie: argocd.token=${ARGOCD_AUTH_TOKEN}
   "/sonarqube":
-    target: {{ .Values.sonarqube.target }}
+    target: {{ .Values.sonarqube.target }}/api
     allowedMethods: ['GET']
     auth: ${SONARQUBE_AUTH}
   "/grafana/api":
