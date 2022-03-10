@@ -58,7 +58,7 @@ proxy:
     target: {{ .Values.prometheus.target }}
     secure: false
     headers:
-      Authorization: '${PROMETHEUS_TOKEN}:'
+      Authorization: Bearer ${PROMETHEUS_TOKEN}
 
   "/circleci/api":
     target: https://circleci.com/api/v1.1
