@@ -36,14 +36,14 @@ backend:
     store: memory
 
 proxy:
-  '/argocd/api/applications/name':
+  "/argocd/api/applications/name":
     target: http://krateo-module-core-argocd-server.krateo-system.svc/api/v1/applications
     changeOrigin: true
     secure: false
     headers:
       Cookie: argocd.token=${ARGOCD_AUTH_TOKEN}
-  '/sonarqube':
-    target: https://sonarcloud.io/api
+  "/sonarqube":
+    target: {{ .Values.sonarqube.target }}
     allowedMethods: ['GET']
     auth: ${SONARQUBE_AUTH}
   "/grafana/api":
