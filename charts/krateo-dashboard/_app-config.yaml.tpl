@@ -56,7 +56,6 @@ proxy:
       Authorization: Bearer ${GRAFANA_AUTH}
   "/prometheus/api":
     target: {{ .Values.prometheus.target }}
-    changeOrigin: true
     secure: false
     headers:
       Authorization: ${PROMETHEUS_TOKEN}
