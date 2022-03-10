@@ -49,7 +49,7 @@ proxy:
     target: {{ .Values.sonarqube.target }}/api
     allowedMethods: ['GET']
     secure: false
-    auth: ${SONARQUBE_AUTH}
+    auth: '${SONARQUBE_AUTH}:'
   "/grafana/api":
     target: {{ .Values.grafana.target }}
     headers:
