@@ -19,4 +19,5 @@ data:
   APP_CONFIG_auth_providers_okta_development_appOrigin: {{ .Values.frontendUrl | quote }}
   APP_CONFIG_auth_providers_oauth2_development_appOrigin: {{ .Values.frontendUrl | quote }}
   KEPTN_SHIPYARD_URL: {{ .Values.keptn.shipyard | quote }}
+  SONARQUBE_URL: {{ .Values.sonarqube.target | quote }}
 
