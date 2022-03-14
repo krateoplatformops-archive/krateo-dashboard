@@ -249,12 +249,16 @@ ldap:
     dn: ou=people,ou=example,dc=example,dc=net
     options:
       filter: (uid=*)
+      scope: sub
+      attributes: ["*"]
     map:
       description: l
   groups:
     dn: ou=access,ou=groups,ou=example,dc=example,dc=net
     options:
       filter: (&(objectClass=some-group-class)(!(groupType=email)))
+      scope: sub
+      attributes: ["*"]
 
 jenkins:
   instances:
