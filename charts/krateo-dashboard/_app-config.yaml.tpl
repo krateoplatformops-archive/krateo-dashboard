@@ -256,10 +256,10 @@ catalog:
               paged:
                 pageSize: 100
                 pagePause: true
-              map:
-                name: uid
-                displayName: cn
-                memberOf: memberOf
+            map:
+              name: uid
+              displayName: cn
+              memberOf: memberOf
           groups:
             dn: {{ .Values.ldap.groups.dn }}
             options:
@@ -269,11 +269,11 @@ catalog:
               paged:
                 pageSize: 100
                 pagePause: true
-              map:
-                name: cn
-                displayName: cn
-                memberOf: memberOf
-                members: member
+            map:
+              name: cn
+              displayName: cn
+              memberOf: memberOf
+              members: member
     {{ end }}
     microsoftGraphOrg:
       providers:
