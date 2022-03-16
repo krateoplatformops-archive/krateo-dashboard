@@ -240,6 +240,39 @@ catalog:
         - target: https://{{ .Values.providers.github.enterprise.url }}
           token: ${GITHUB_TOKEN}
     {{ end }}
+    {{ if .Values.ldap.enabled }}
+    ldapOrg:
+      providers:
+        - target: {{ .Values.ldap.target }}
+          bind:
+            dn: {{ .Values.ldap.bind.dn }}
+            secret: ${LDAP_SECRET}
+          users:
+            dn: {{ .Values.ldap.users.dn }}
+            options:
+              filter: {{ .Values.ldap.users.options.filter }}
+              scope: {{ .Values.ldap.users.options.scope }}
+              paged:
+                pageSize: 100
+                pagePause: true
+            map:
+              name: cn
+              displayName: cn
+              memberOf: memberOf
+          groups:
+            dn: {{ .Values.ldap.groups.dn }}
+            options:
+              filter: {{ .Values.ldap.groups.options.filter }}
+              scope: {{ .Values.ldap.groups.options.scope }}
+              paged:
+                pageSize: 100
+                pagePause: true
+            map:
+              name: cn
+              displayName: cn
+              memberOf: memberOf
+              members: member
+    {{ end }}
     microsoftGraphOrg:
       providers:
         - target: https://graph.microsoft.com/v1.0
@@ -264,6 +297,10 @@ catalog:
       target: https://graph.microsoft.com/v1.0
       rules:
         - allow: [Group, User]
+    {{ if .Values.ldap.enabled }}
+    - type: ldap-org
+      target: {{ .Values.ldap.target }}
+    {{ end }}
 {{- if .Values.backend.demoData }}
     # Backstage example components
     - type: github
@@ -399,36 +436,3 @@ homepage:
     - label: TYO
       timezone: "Asia/Tokyo"
 
-{{ if .Values.ldap.enabled }}
-ldap:
-  providers:
-    - target: {{ .Values.ldap.target }}
-      bind:
-        dn: {{ .Values.ldap.bind.dn }}
-        secret: ${LDAP_SECRET}
-      users:
-        dn: {{ .Values.ldap.users.dn }}
-        options:
-          filter: {{ .Values.ldap.users.options.filter }}
-          scope: {{ .Values.ldap.users.options.scope }}
-          paged:
-            pageSize: 100
-            pagePause: true
-        map:
-          name: cn
-          displayName: cn
-          memberOf: memberOf
-      groups:
-        dn: {{ .Values.ldap.groups.dn }}
-        options:
-          filter: {{ .Values.ldap.groups.options.filter }}
-          scope: {{ .Values.ldap.groups.options.scope }}
-          paged:
-            pageSize: 100
-            pagePause: true
-        map:
-          name: cn
-          displayName: cn
-          memberOf: memberOf
-          members: member
-{{ end }}
