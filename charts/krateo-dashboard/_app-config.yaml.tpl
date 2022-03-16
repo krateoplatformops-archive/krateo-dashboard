@@ -411,7 +411,6 @@ ldap:
         options:
           filter: {{ .Values.ldap.users.options.filter }}
           scope: {{ .Values.ldap.users.options.scope }}
-          attributes: {{ .Values.ldap.users.options.attributes }}
           paged:
             pageSize: 100
             pagePause: true
@@ -424,7 +423,6 @@ ldap:
         options:
           filter: {{ .Values.ldap.groups.options.filter }}
           scope: {{ .Values.ldap.groups.options.scope }}
-          attributes: {{ .Values.ldap.groups.options.attributes }}
           paged:
             pageSize: 100
             pagePause: true

@@ -250,7 +250,6 @@ ldap:
     options:
       filter: (uid=*)
       scope: sub
-      attributes: ["*"]
     map:
       description: l
   groups:
@@ -258,7 +257,6 @@ ldap:
     options:
       filter: (&(objectClass=some-group-class)(!(groupType=email)))
       scope: sub
-      attributes: ["*"]
 
 jenkins:
   instances:
