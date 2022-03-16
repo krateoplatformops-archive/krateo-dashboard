@@ -416,7 +416,7 @@ ldap:
             pageSize: 100
             pagePause: true
         map:
-          name: uid
+          name: cn
           displayName: cn
           memberOf: memberOf
       groups:
