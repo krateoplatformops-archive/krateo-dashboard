@@ -250,8 +250,6 @@ ldap:
     options:
       filter: (uid=*)
       scope: sub
-    map:
-      description: l
   groups:
     dn: ou=access,ou=groups,ou=example,dc=example,dc=net
     options:
