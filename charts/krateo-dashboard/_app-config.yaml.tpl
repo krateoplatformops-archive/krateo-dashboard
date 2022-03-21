@@ -231,6 +231,9 @@ scaffolder:
     visibility: public # or 'internal' or 'private'
 
 catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
   rules:
     - allow: [Component, System, API, Group, User, Resource, Location, Domain, Template]
   processors:
