@@ -45,10 +45,16 @@ spec:
             - name: app-config
               mountPath: {{ printf "/app/%s" (include "krateo.appConfigFilename" .) }}
               subPath: {{ include "krateo.appConfigFilename" . }}
+            - name: runtime-config-volume
+              mountPath: /app/runtime-config.js
+              subPath: runtime-config.js
       volumes:
         - name: app-config
           configMap:
             name: {{ include "krateo.name" . }}-app-config
+        - name: runtime-config-volume
+          configMap:
+            name: runtime-config
       {{- if .Values.global.nodeSelector }}
       nodeSelector: {{- toYaml .Values.global.nodeSelector | nindent 8 }}
       {{- end }}
