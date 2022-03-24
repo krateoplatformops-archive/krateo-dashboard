@@ -155,8 +155,6 @@ appConfig:
   #   organization: Krateo
 
 kubernetes:
-  url: http://localhost:6443
-  token: a
   clusters:
     - name: local
       url: http://localhost:6443
