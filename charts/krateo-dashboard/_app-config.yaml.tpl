@@ -243,6 +243,7 @@ catalog:
         - target: https://{{ .Values.providers.github.enterprise.url }}
           token: ${GITHUB_TOKEN}
     {{ end }}
+    {{ if .Values.providers.microsoft.clientId != "f" }}
     microsoftGraphOrg:
       providers:
         - target: https://graph.microsoft.com/v1.0
@@ -262,6 +263,7 @@ catalog:
           # See https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties
           # groupFilter: securityEnabled eq false
           groupFilter: {{ .Values.microsoftGraphOrg.groupFilter }}
+    {{ end }}
   locations:
     - type: microsoft-graph-org
       target: https://graph.microsoft.com/v1.0
