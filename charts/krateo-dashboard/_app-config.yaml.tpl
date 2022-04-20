@@ -243,7 +243,7 @@ catalog:
         - target: https://{{ .Values.providers.github.enterprise.url }}
           token: ${GITHUB_TOKEN}
     {{ end }}
-    {{ if .Values.providers.microsoft.clientId != "f" }}
+    {{ if not (eq .Values.providers.microsoft.clientId "f") }}
     microsoftGraphOrg:
       providers:
         - target: https://graph.microsoft.com/v1.0
