@@ -225,7 +225,7 @@ auth:
     clientSecret: <clientSecret>
     token: <token>
   oidc:
-    metadataUrl: <metadataUrl>
+    metadataUrl:
     clientId: <clientId>
     clientSecret: <clientSecret>
     authorizationUrl: <authorizationUrl>
