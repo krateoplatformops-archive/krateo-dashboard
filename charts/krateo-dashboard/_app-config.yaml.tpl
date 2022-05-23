@@ -118,6 +118,13 @@ proxy:
     secure: false
     headers:
       x-token: ${KEPTN_API_TOKEN}
+  
+  {{ if .Values.providers.github.enterprise.enabled }}
+  "/github":
+    target: https://{{ .Values.providers.github.enterprise.url }}
+    headers:
+      Authorization: token ${GITHUB_TOKEN}
+  {{ end }}
 
 grafana:
   domain: {{ .Values.grafana.target }}
